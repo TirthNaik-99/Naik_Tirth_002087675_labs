@@ -12,11 +12,12 @@ import javax.swing.JOptionPane;
  */
 public class CreateJPanel extends javax.swing.JPanel {
 
-    Product product;
+    model.Product product;
+
     /**
      * Creates new form CreateJPanel
      */
-    public CreateJPanel(Product p) {
+    public CreateJPanel(model.Product p) {
         product = p;
         initComponents();
     }
@@ -72,6 +73,8 @@ public class CreateJPanel extends javax.swing.JPanel {
         txtEmergencyContactName = new javax.swing.JTextField();
         lblTitle = new javax.swing.JLabel();
         btnSave = new javax.swing.JButton();
+
+        setPreferredSize(new java.awt.Dimension(700, 600));
 
         lblFirstName.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblFirstName.setText("First Name");
@@ -292,7 +295,7 @@ public class CreateJPanel extends javax.swing.JPanel {
         String dateofbirth = txtDateOfBirth.getText();
         String gender = txtGender.getText();
         String maritalstatus = txtMaritalStatus.getText();
-        String phone = txtPhone.getText();     
+        String phone = txtPhone.getText();
         String email = txtEmail.getText();
         String nationality = txtNationality.getText();
         String driverslicensenumber = txtDriversLicenseNumber.getText();
@@ -307,7 +310,36 @@ public class CreateJPanel extends javax.swing.JPanel {
         String telephonenumber = txtTelephoneNumber.getText();
         String faxnumber = txtFaxNumber.getText();
         String emergencyname = txtEmergencyContactName.getText();
-        
+
+        // Basic null/empty field validation
+        if (firstname.isEmpty() || lastname.isEmpty() || dateofbirth.isEmpty() || phone.isEmpty() || email.isEmpty() || ssn.isEmpty() || zip.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please fill out all required fields.", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            return; // Stop the process if any required fields are empty
+        }
+
+        // Regex validation for email
+        if (!email.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
+            JOptionPane.showMessageDialog(this, "Invalid email format.", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Regex validation for phone (10 digits)
+        if (!phone.matches("\\d{10}")) {
+            JOptionPane.showMessageDialog(this, "Phone number must be 10 digits.", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Regex validation for SSN (e.g., XXX-XX-XXXX format)
+        if (!ssn.matches("\\d{3}-\\d{2}-\\d{4}")) {
+            JOptionPane.showMessageDialog(this, "SSN must follow the format XXX-XX-XXXX.", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // ZIP code validation (5 digits)
+        if (!zip.matches("\\d{5}")) {
+            JOptionPane.showMessageDialog(this, "ZIP code must be 5 digits.", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         product.setFirstName(firstname);
         product.setLastName(lastname);
         product.setDateOfBirth(dateofbirth);
@@ -324,13 +356,13 @@ public class CreateJPanel extends javax.swing.JPanel {
         product.setAddressLine2(addressline2);
         product.setCity(city);
         product.setState(state);
-        product.setZip(zip);
+        product.setZIP(zip);
         product.setTelephoneNumber(telephonenumber);
         product.setFaxNumber(faxnumber);
         product.setEmergencyContactName(emergencyname);
-        
+
         JOptionPane.showMessageDialog(this, "Profile Saved", "Success", JOptionPane.PLAIN_MESSAGE);
-        
+
         txtFirstName.setText("");
 
         txtLastName.setText("");
@@ -349,7 +381,7 @@ public class CreateJPanel extends javax.swing.JPanel {
         txtCity.setText("");
         txtState.setText("");
         txtZip.setText("");
-        txtTelephoneNumber.setText("");   
+        txtTelephoneNumber.setText("");
         txtFaxNumber.setText("");
         txtEmergencyContactName.setText("");
     }//GEN-LAST:event_btnSaveActionPerformed
