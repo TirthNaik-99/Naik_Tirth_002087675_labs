@@ -1,0 +1,24 @@
+# Ignore build directory
+/build/
+
+# Ignore nbproject/private directory (contains personal settings)
+/nbproject/private/
+
+# Ignore NetBeans-specific files
+nbproject/private/
+**/nb-configuration.xml
+
+# Ignore MacOS specific files
+.DS_Store
+.idea/
+
+# Ignore log files
+*.log
+
+# Ignore NetBeans generated classes folder
+/build/
+/dist/
+
+# Ignore Maven / Gradle specific files
+target/
+out/
