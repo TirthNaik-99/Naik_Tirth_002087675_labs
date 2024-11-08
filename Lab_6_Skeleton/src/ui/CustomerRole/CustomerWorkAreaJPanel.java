@@ -5,6 +5,7 @@
  */
 package ui.CustomerRole;
 
+import java.awt.CardLayout;
 import javax.swing.JPanel;
 import model.MasterOrderList;
 import model.SupplierDirectory;
@@ -80,7 +81,10 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
     private void btnBrowseCatalogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrowseCatalogActionPerformed
         // TODO add your handling code here:
-        
+        BrowseProductsJPanel bpjp = new BrowseProductsJPanel(userProcessContainer, supplierDirectory, masterOrderList);
+        userProcessContainer.add("CustomerWorkAreaJPanel", bpjp);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnBrowseCatalogActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
