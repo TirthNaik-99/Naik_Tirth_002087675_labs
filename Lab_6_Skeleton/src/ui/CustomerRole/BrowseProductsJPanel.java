@@ -34,6 +34,7 @@ public class BrowseProductsJPanel extends javax.swing.JPanel {
         this.masterOrderList = masterOrderList;
       
         populateCombo();
+        populateProductTable();
     }
 
     
@@ -292,7 +293,7 @@ public class BrowseProductsJPanel extends javax.swing.JPanel {
 
     private void cmbSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSupplierActionPerformed
         // TODO add your handling code here:
-        
+        populateProductTable();
     }//GEN-LAST:event_cmbSupplierActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -360,4 +361,23 @@ public class BrowseProductsJPanel extends javax.swing.JPanel {
              cmbSupplier.addItem(s);
     }
 }
+
+    private void populateProductTable() {
+        Supplier selectedSupplier = (Supplier) cmbSupplier.getSelectedItem();
+        
+        if(selectedSupplier == null){
+            return;
+        }
+        DefaultTableModel model = (DefaultTableModel) tblProductCatalog.getModel();
+        model.setRowCount(0);
+
+        for (Product p : selectedSupplier.getProductCatalog().getProductcatalog()) {
+            Object row[] = new Object[4];
+            row[0] = p;
+            row[1] = p.getModelNumber();
+            row[2] = p.getPrice();
+            row[3] = p.getAvail();
+            model.addRow(row);
+        }
+    }
 }
