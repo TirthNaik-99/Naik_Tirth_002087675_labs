@@ -318,6 +318,8 @@ public class BrowseProductsJPanel extends javax.swing.JPanel {
 
     private void btnSearchProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchProductActionPerformed
         
+        String productName = txtSearch.getText();
+        populateProductTable(productName);
     }//GEN-LAST:event_btnSearchProductActionPerformed
 
     private void btnRemoveOrderItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveOrderItemActionPerformed
@@ -378,6 +380,25 @@ public class BrowseProductsJPanel extends javax.swing.JPanel {
             row[2] = p.getPrice();
             row[3] = p.getAvail();
             model.addRow(row);
+        }
+    }
+    
+    private void populateProductTable(String keyword) {
+        
+        DefaultTableModel model = (DefaultTableModel) tblProductCatalog.getModel();
+        model.setRowCount(0);
+
+        for (Supplier s : supplierDirectory.getSupplierlist()){
+            for (Product p : s.getProductCatalog().getProductcatalog()) {
+                if(p.getProdName().equalsIgnoreCase(keyword)){
+                Object row[] = new Object[4];
+                row[0] = p;
+                row[1] = p.getModelNumber();
+                row[2] = p.getPrice();
+                row[3] = p.getAvail();
+                model.addRow(row);
+                }
+            }
         }
     }
 }
