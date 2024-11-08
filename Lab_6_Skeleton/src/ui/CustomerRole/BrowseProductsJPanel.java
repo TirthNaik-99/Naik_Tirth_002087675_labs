@@ -33,6 +33,7 @@ public class BrowseProductsJPanel extends javax.swing.JPanel {
         this.supplierDirectory = supplierDirectory;
         this.masterOrderList = masterOrderList;
       
+        populateCombo();
     }
 
     
@@ -352,4 +353,11 @@ public class BrowseProductsJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtSalesPrice;
     private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
+
+    private void populateCombo() {
+         cmbSupplier.removeAllItems();
+         for (Supplier s : supplierDirectory.getSupplierlist()){
+             cmbSupplier.addItem(s);
+    }
+}
 }
