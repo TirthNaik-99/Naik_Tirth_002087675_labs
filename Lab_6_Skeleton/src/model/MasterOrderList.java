@@ -4,10 +4,27 @@
  */
 package model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author tirthnaik
  */
 public class MasterOrderList {
+    ArrayList<Order> orderList;
+
+    public MasterOrderList() {
+        orderList = new ArrayList<Order>();
+    }
+
+    public ArrayList<Order> getOrderList() {
+        return orderList;
+    }
+
+    public void setOrderList(ArrayList<Order> orderList) {
+        this.orderList = orderList;
+    }
+    
+    
     
 }

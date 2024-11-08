@@ -6,6 +6,8 @@
 package ui;
 
 import java.awt.CardLayout;
+import model.Business;
+import model.MasterOrderList;
 import model.SupplierDirectory;
 import ui.AdminRole.AdminWorkAreaJPanel;
 import ui.SupplierRole.LoginSupplierJPanel;
@@ -19,11 +21,15 @@ public class MainJFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainJFrame
      */
+    Business business;
     SupplierDirectory supplierDirectory;
+    MasterOrderList masterOrderList;
     
     public MainJFrame() {
         initComponents();
-        supplierDirectory = new SupplierDirectory();
+        business = new Business();
+        supplierDirectory = business.getSupplierDirectory();
+        masterOrderList = business.getMasterOrderList();
         setSize(830,600);
     }
 

@@ -9,5 +9,20 @@ package model;
  * @author tirthnaik
  */
 public class Business {
+    MasterOrderList masterOrderList;
+    SupplierDirectory supplierDirectory;
+
+    public Business() {
+        masterOrderList = new MasterOrderList();
+        supplierDirectory = new SupplierDirectory();
+    }
+    
+    public SupplierDirectory getSupplierDirectory(){
+        return supplierDirectory;
+    }
+    public MasterOrderList getMasterOrderList(){
+        return masterOrderList;
+    }
+    
     
 }
