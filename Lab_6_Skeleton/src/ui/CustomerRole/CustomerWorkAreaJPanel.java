@@ -5,11 +5,9 @@
  */
 package ui.CustomerRole;
 
-
-
-
-
-
+import javax.swing.JPanel;
+import model.MasterOrderList;
+import model.SupplierDirectory;
 
 /**
  *
@@ -17,11 +15,17 @@ package ui.CustomerRole;
  */
 public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
 
+    JPanel userProcessContainer;
+    SupplierDirectory supplierDirectory;
+    MasterOrderList masterOrderList;
 
 
     /** Creates new form ProductManagerWorkAreaJPanel */
-    public CustomerWorkAreaJPanel() {
+    public CustomerWorkAreaJPanel(JPanel userProcessContainer,SupplierDirectory supplierDirectory,MasterOrderList masterOrderList) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.supplierDirectory = supplierDirectory;
+        this.masterOrderList = masterOrderList;
     }
 
     /** This method is called from within the constructor to
