@@ -17,6 +17,7 @@ public class Post {
     private int postId;
     private int userId;
     private List<Comment> comments;
+    public int getUserId;
 
     public Post(int postId, int userId) {
         this.postId = postId;
