@@ -22,6 +22,14 @@ public class UserMapComparator implements  Comparator<User>{
 
     @Override
     public int compare(User o1, User o2) {
-        return Integer.compare(userPostMap.get(o1.getId()), userPostMap.get(o2.getId()));
-    }
+        Integer value1 = userPostMap.get(o1.getId());
+        Integer value2 = userPostMap.get(o2.getId());
+
+        // Treat null values as 0 (or another default value)
+        value1 = (value1 == null) ? 0 : value1;
+        value2 = (value2 == null) ? 0 : value2;
+
+        return Integer.compare(value1, value2);
+}
+
 }

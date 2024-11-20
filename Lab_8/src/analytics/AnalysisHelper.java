@@ -65,26 +65,58 @@ public class AnalysisHelper {
         System.out.println("Q3 - post with most comments " + postWithMostComments.getPostId());
     }
     
-    public void getPassiveUsers(){
+        public void getPassiveUsers() {
         DataStore data = DataStore.getInstance();
-        HashMap<Integer, Integer> postNumbers = new HashMap<Integer, Integer>();
-        for (Post p : data.getPosts().values()){
-            int userId = p.getUserId;
-            if (postNumbers.containsKey(userId)){
-                postNumbers.put(userId, postNumbers.get(userId) + 1);
-            } else {
-                postNumbers.put(userId,1);
-            }
-            
+        HashMap<Integer, Integer> postNumbers = new HashMap<>();
+
+        // Initialize map with all user IDs
+        for (User user : data.getUsers().values()) {
+            postNumbers.put(user.getId(), 0);
         }
-        ArrayList<User> users = new ArrayList(data.getUsers().values());
+
+        // Count posts for each user
+        for (Post p : data.getPosts().values()) {
+            int userId = p.getUserId(); // Fix method call parentheses
+            postNumbers.put(userId, postNumbers.get(userId) + 1);
+        }
+
+        // Sort users by post count
+        ArrayList<User> users = new ArrayList<>(data.getUsers().values());
         Collections.sort(users, new UserMapComparator(postNumbers));
-        
+
+        // Output the top 5 users with the least posts
         System.out.println("Q4 - The following users have the least posts: ");
-        
-        for (int i = 0; i< 5; i++){
+        for (int i = 0; i < Math.min(5, users.size()); i++) {
             System.out.println(users.get(i) + ", - Post count: " + postNumbers.get(users.get(i).getId()));
         }
     }
+
+    
+            public void getPassiveCommentUsers() {
+        DataStore data = DataStore.getInstance();
+        HashMap<Integer, Integer> commentNumbers = new HashMap<>();
+
+        // Initialize map with all user IDs
+        for (User user : data.getUsers().values()) {
+            commentNumbers.put(user.getId(), 0);
+        }
+
+        // Count comments for each user
+        for (Comment c : data.getComments().values()) {
+            int userId = c.getUserId();
+            commentNumbers.put(userId, commentNumbers.get(userId) + 1);
+        }
+
+        // Sort users by comment count
+        ArrayList<User> users = new ArrayList<>(data.getUsers().values());
+        Collections.sort(users, new UserMapComparator(commentNumbers));
+
+        // Output the top 5 users with the least comments
+        System.out.println("Q5 - The following users have the least comments: ");
+        for (int i = 0; i < Math.min(5, users.size()); i++) {
+            System.out.println(users.get(i) + ", - Comment count: " + commentNumbers.get(users.get(i).getId()));
+        }
+    }
+
     
 }
